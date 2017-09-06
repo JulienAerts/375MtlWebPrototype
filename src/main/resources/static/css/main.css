@@ -1,0 +1,15 @@
+body {
+    font-family: sans-serif;
+}
+
+input[type="date"]:hover::-webkit-calendar-picker-indicator {
+  color: red;
+}
+
+input[type="date"]::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#mapid { height: 600px; width:600px; }

@@ -1,0 +1,188 @@
+#%RAML 1.0
+title: API REST ACTIVITES # required title
+
+/activites-375e: # optional resource
+  get: # HTTP method declaration
+    responses: # declare a response
+      200: # HTTP status code
+        body: # declare content of response
+          application/json: # media type
+            type: | # structural definition of a response (schema or type)
+				{
+					"properties": {
+						"arrondissement": {
+							"id": "/properties/arrondissement",
+							"type": "string"
+						},
+						"dates": {
+							"id": "/properties/dates",
+							"items": {
+								"id": "/properties/dates/items",
+								"type": "string"
+							},
+							"type": "array"
+						},
+						"description": {
+							"id": "/properties/description",
+							"type": "string"
+						},
+						"id": {
+							"id": "/properties/id",
+							"type": "string"
+						},
+						"lieu": {
+							"id": "/properties/lieu",
+							"properties": {
+								"lat": {
+									"id": "/properties/lieu/properties/lat",
+									"type": "number"
+								},
+								"lng": {
+									"id": "/properties/lieu/properties/lng",
+									"type": "number"
+								},
+								"nom": {
+									"id": "/properties/lieu/properties/nom",
+									"type": "string"
+								}
+							},
+							"type": "object"
+						},
+						"nom": {
+							"id": "/properties/nom",
+							"type": "string"
+						}
+					},
+					"type": "object"
+				}
+            example: | # example how a response looks like
+              {
+				  "id": "279",
+				  "nom": "À RDP/PAT, Fêtons Montréal! / Rivière-des-Prairies danse son héritage",
+				  "description": "",
+				  "arrondissement": "Rivière-des-Prairies–Pointe-aux-Trembles",
+				  "dates": [
+					"2017-08-26T04:00:00.000Z"
+				  ],
+				  "lieu": {
+					"nom": "Parc Alexis-Carrel",
+					"lat": 45.6439805,
+					"lng": -73.5888416
+				  }
+			  }
+	  404: # HTTP status code
+        body: # declare content of response
+          application/json: # media type
+            type: | # structural definition of a response (schema or type)
+              {
+				"properties": {
+					"code": {
+						"id": "/properties/code",
+						"type": "integer"
+					},
+					"message": {
+						"id": "/properties/message",
+						"type": "string"
+					}
+				},
+				"type": "object"
+			  }
+            example: | # example how a response looks like
+              {
+					"code": 404,
+					"message": "Aucune activite trouve avec les parametres fournis"
+			  }
+	  400: # HTTP status code
+        body: # declare content of response
+          application/json: # media type
+            type: | # structural definition of a response (schema or type)
+              {
+				"properties": {
+					"code": {
+						"id": "/properties/code",
+						"type": "integer"
+					},
+					"message": {
+						"id": "/properties/message",
+						"type": "string"
+					}
+				},
+				"type": "object"
+			  }
+            example: | # example how a response looks like
+              {
+					"code": 400,
+					"message": "Erreur de syntaxe dans la requete"
+			  }
+	post: # HTTP method declaration
+    responses: # declare a response
+		200: # HTTP status code
+		body: # declare content of response
+          text/plain;charset=UTF-8: # media type
+            type: | # structural definition of a response (schema or type)
+              String
+            example: | # example how a response looks like
+              "Ajout d'une nouvelle activitee complete"
+		400: # HTTP status code
+        body: # declare content of response
+          application/json: # media type
+            type: | # structural definition of a response (schema or type)
+              {
+				"properties": {
+					"code": {
+						"id": "/properties/code",
+						"type": "integer"
+					},
+					"message": {
+						"id": "/properties/message",
+						"type": "string"
+					}
+				},
+				"type": "object"
+			  }
+            example: | # example how a response looks like
+              {
+					"code": 400,
+					"message": "Erreur de syntaxe dans la requete"
+			  }
+	put: # HTTP method declaration
+    responses: # declare a response
+		200: # HTTP status code
+		body: # declare content of response
+          text/plain;charset=UTF-8: # media type
+            type: | # structural definition of a response (schema or type)
+              String
+            example: | # example how a response looks like
+              "Mise a jours complete"
+		400: # HTTP status code
+        body: # declare content of response
+          application/json: # media type
+            type: | # structural definition of a response (schema or type)
+              {
+				"properties": {
+					"code": {
+						"id": "/properties/code",
+						"type": "integer"
+					},
+					"message": {
+						"id": "/properties/message",
+						"type": "string"
+					}
+				},
+				"type": "object"
+			  }
+            example: | # example how a response looks like
+              {
+					"code": 400,
+					"message": "Erreur de syntaxe dans la requete"
+			  }
+	delete: # HTTP method declaration
+    responses: # declare a response
+		200: # HTTP status code
+		body: # declare content of response
+          text/plain;charset=UTF-8: # media type
+            type: | # structural definition of a response (schema or type)
+              String
+            example: | # example how a response looks like
+              "Supression complete"
+			  

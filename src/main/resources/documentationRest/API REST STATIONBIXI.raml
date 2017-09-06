@@ -1,0 +1,132 @@
+#%RAML 1.0
+title: API REST STATIONBIXI # required title
+
+/stations-bixi: # optional resource
+  get: # HTTP method declaration
+    responses: # declare a response
+      200: # HTTP status code
+        body: # declare content of response
+          application/json: # media type
+            type: | # structural definition of a response (schema or type)
+		{
+                    "items": {
+                        "id": "/items",
+                        "properties": {
+                            "bk": {
+                                "id": "/items/properties/bk",
+                                "type": "boolean"
+                            },
+                            "bl": {
+                                "id": "/items/properties/bl",
+                                "type": "boolean"
+                            },
+                            "est_bloquer": {
+                                "id": "/items/properties/est_bloquer",
+                                "type": "boolean"
+                            },
+                            "est_hors_usages": {
+                                "id": "/items/properties/est_hors_usages",
+                                "type": "boolean"
+                            },
+                            "est_maintenance": {
+                                "id": "/items/properties/est_maintenance",
+                                "type": "boolean"
+                            },
+                            "etat": {
+                                "id": "/items/properties/etat",
+                                "type": "integer"
+                            },
+                            "id": {
+                                "id": "/items/properties/id",
+                                "type": "integer"
+                            },
+                            "idStation": {
+                                "id": "/items/properties/idStation",
+                                "type": "string"
+                            },
+                            "lat": {
+                                "id": "/items/properties/lat",
+                                "type": "number"
+                            },
+                            "lng": {
+                                "id": "/items/properties/lng",
+                                "type": "number"
+                            },
+                            "nb_bixi_dispo": {
+                                "id": "/items/properties/nb_bixi_dispo",
+                                "type": "integer"
+                            },
+                            "nb_bixi_non_dispo": {
+                                "id": "/items/properties/nb_bixi_non_dispo",
+                                "type": "integer"
+                            },
+                            "nb_termino_dispo": {
+                                "id": "/items/properties/nb_termino_dispo",
+                                "type": "integer"
+                            },
+                            "nb_termino_non_dispo": {
+                                "id": "/items/properties/nb_termino_non_dispo",
+                                "type": "integer"
+                            },
+                            "nom": {
+                                "id": "/items/properties/nom",
+                                "type": "string"
+                            },
+                            "temps_derniere_com": {
+                                "id": "/items/properties/temps_derniere_com",
+                                "type": "integer"
+                            },
+                            "temps_derniere_mise": {
+                                "id": "/items/properties/temps_derniere_mise",
+                                "type": "integer"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            example: | # example how a response looks like
+              [
+                {
+                    "id": 1,
+                    "nom": "Hôtel-de-Ville 2 (du Champs-de-Mars / Gosford)",
+                    "etat": 1,
+                    "est_bloquer": false,
+                    "est_maintenance": false,
+                    "est_hors_usages": false,
+                    "temps_derniere_mise": 1500871418645,
+                    "temps_derniere_com": 1500881443921,
+                    "bk": false,
+                    "bl": false,
+                    "lat": -73.55443105101585,
+                    "lng": 45.50931028555171,
+                    "nb_termino_dispo": 14,
+                    "nb_termino_non_dispo": 0,
+                    "nb_bixi_dispo": 1,
+                    "nb_bixi_non_dispo": 0,
+                    "idStation": "6001"
+                }
+             ]
+	  404: # HTTP status code
+        body: # declare content of response
+          application/json: # media type
+            type: | # structural definition of a response (schema or type)
+              {
+				"properties": {
+					"code": {
+						"id": "/properties/code",
+						"type": "integer"
+					},
+					"message": {
+						"id": "/properties/message",
+						"type": "string"
+					}
+				},
+				"type": "object"
+			  }
+            example: | # example how a response looks like
+              {
+					"code": 404,
+					"message": "Aucune station bixi trouve avec les parametres fournis"
+			  }
+	 
